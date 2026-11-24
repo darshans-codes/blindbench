@@ -1,0 +1,10 @@
+**
+!infra/
+!infra/protocol/
+!infra/protocol/Dockerfile
+!infra/protocol/probe.mjs
+!infra/protocol/protocol.mjs
+!infra/protocol/native-peers.mjs
+!packages/
+!packages/study-policy/
+!packages/study-policy/index.mjs

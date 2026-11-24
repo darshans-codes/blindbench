@@ -1,0 +1,23 @@
+{
+  "name": "blindbench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24.18.0 <25" },
+  "scripts": {
+    "dev": "node src/server.mjs",
+    "start": "node src/server.mjs",
+    "backup": "node scripts/backup.mjs",
+    "check": "node scripts/check.mjs",
+    "typecheck": "npm exec --yes --package typescript@7.0.2 -- tsc -p packages/study-policy",
+    "check:topology": "node scripts/check-topology.mjs",
+    "test": "node --test",
+    "test:browser": "node scripts/browser-smoke.mjs",
+    "test:study-protocol": "node scripts/browser-smoke.mjs --with-protocol",
+    "test:upstream": "node scripts/upstream-fixtures.mjs",
+    "test:checkpoint": "npm run test:upstream && npm run test:study-protocol",
+    "test:protocol": "node scripts/protocol-spike.mjs",
+    "test:protocol:native": "node infra/protocol/probe.mjs --native",
+    "fixture:run": "node scripts/fixture-run.mjs"
+  }
+}

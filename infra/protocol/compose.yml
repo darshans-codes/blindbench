@@ -1,0 +1,29 @@
+x-janus: &janus
+  image: us-west2-docker.pkg.dev/divviup-artifacts-public/janus/janus_interop_aggregator:0.7.148
+  entrypoint: ["/bin/sh", "/opt/blindbench/isolate-janus.sh"]
+  volumes:
+    - ./isolate-janus.sh:/opt/blindbench/isolate-janus.sh:ro
+  networks: [protocol]
+
+services:
+  leader:
+    <<: *janus
+  helper:
+    <<: *janus
+  collector:
+    image: us-west2-docker.pkg.dev/divviup-artifacts-public/janus/janus_interop_collector:0.7.148
+    networks: [protocol]
+  probe:
+    build:
+      context: ../..
+      dockerfile: infra/protocol/Dockerfile
+    environment: [BLINDBENCH_FIXTURE]
+    init: true
+    user: pwuser
+    shm_size: 256mb
+    networks: [protocol]
+    depends_on: [leader, helper, collector]
+
+networks:
+  protocol:
+    internal: true

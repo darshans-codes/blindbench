@@ -1,0 +1,6 @@
+[profile.default]
+src = "contracts/src"
+test = "contracts/test"
+out = "artifacts/foundry"
+cache_path = ".local/foundry-cache"
+solc_version = "0.8.24"
